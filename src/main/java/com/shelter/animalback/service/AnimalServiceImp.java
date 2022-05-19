@@ -73,7 +73,7 @@ public class AnimalServiceImp implements AnimalService {
     }
 
     @Override
-    public void delete(String name) {
+    public Animal delete(String name) {
         var dao = repository.findByName(name);
 
         if (dao == null) {
@@ -81,13 +81,14 @@ public class AnimalServiceImp implements AnimalService {
         }
 
         repository.delete(dao);
+        return map(dao);
     }
 
     private Animal map(AnimalDao dao) {
         var vaccinesDao = dao.getVaccines();
 
-        var vaccines = vaccinesDao == null ? new String[0] :
-                vaccinesDao.stream().map(vaccineDao -> vaccineDao.getName()).toArray(size -> new String[size]);
+        var vaccines = vaccinesDao == null ? new String[0]
+                : vaccinesDao.stream().map(vaccineDao -> vaccineDao.getName()).toArray(size -> new String[size]);
 
         return new Animal(
                 dao.getId(),
@@ -95,8 +96,7 @@ public class AnimalServiceImp implements AnimalService {
                 dao.getBreed(),
                 dao.getGender(),
                 dao.isVaccinated(),
-                vaccines
-        );
+                vaccines);
     }
 
     private AnimalDao map(Animal animal) {
