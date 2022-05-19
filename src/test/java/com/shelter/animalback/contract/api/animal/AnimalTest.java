@@ -23,9 +23,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-@PactBroker(url = "https://zornstolz.pactflow.io", authentication = @PactBrokerAuth(token = "uM082-ZLaRX767Ur82QnbQ"))
-// @PactBroker(url = "${PACT_BROKER_BASE_URL}", authentication =
-// @PactBrokerAuth(token = "PACT_BROKER_TOKEN"))
+//@PactBroker(url = "https://zornstolz.pactflow.io", authentication = @PactBrokerAuth(token = "uM082-ZLaRX767Ur82QnbQ"))
+@PactBroker(url = "${PACT_BROKER_BASE_URL}", authentication = @PactBrokerAuth(token = "PACT_BROKER_TOKEN"))
 @Provider("AnimalShelterBack")
 @ExtendWith(MockitoExtension.class)
 public class AnimalTest {
@@ -60,13 +59,36 @@ public class AnimalTest {
         animals.add(animal);
         Mockito.when(animalService.getAll()).thenReturn(animals);
     }
-}
 
-// ./gradlew test --tests
-// "com.shelter.animalback.contract.api.animal.AnimalTest" -
-// DPACT_BROKER_BASE_URL="url.a.tu.pactflow" -DPACT_BROKER_TOKEN="tu.token"
-// ./gradlew test --tests
-// "com.shelter.animalback.contract.api.animal.AnimalTest"
-// ./gradlew test --tests
-// "com.shelter.animalback.contract.api.animal.AnimalTest"
-// -Dpact.verifier.publishResults=true
+    @State("get animal by name")
+    public void getAnimal() {
+        Animal animal = new Animal();
+        animal.setName("paco");
+        animal.setBreed("Azul Ruso");
+        animal.setGender("Male");
+        animal.setVaccinated(false);
+        Mockito.when(animalService.get("paco")).thenReturn(animal);
+    }
+
+    @State("add animal")
+    public void saveAnimal() {
+        Animal animal = new Animal();
+        animal.setName("amenti");
+        animal.setBreed("Criolla");
+        animal.setGender("Female");
+        animal.setVaccinated(true);
+        Mockito.when(animalService.save(animal)).thenReturn(animal);
+    }
+
+    @State("update animal")
+    public void updateAnimal() {
+        Animal animal = new Animal();
+        animal.setName("cheeto");
+        animal.setBreed("egipcia");
+        animal.setGender("Male");
+        animal.setVaccinated(true);
+        Mockito.when(animalService
+                .replace("Paco", animal))
+                .thenReturn(animal);
+    }
+}
