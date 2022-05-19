@@ -23,7 +23,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-//@PactBroker(url = "https://zornstolz.pactflow.io", authentication = @PactBrokerAuth(token = "uM082-ZLaRX767Ur82QnbQ"))
 @PactBroker(url = "${PACT_BROKER_BASE_URL}", authentication = @PactBrokerAuth(token = "PACT_BROKER_TOKEN"))
 @Provider("AnimalShelterBack")
 @ExtendWith(MockitoExtension.class)
