@@ -51,11 +51,11 @@ public class AnimalTest {
     public void listAnimals() {
         Animal animal = new Animal();
 
-        animal.setName("manchas");
-        animal.setBreed("bengali");
+        animal.setName("Manchas");
+        animal.setBreed("Bengali");
         animal.setGender("Female");
         animal.setVaccinated(true);
-        animal.setVaccines(new String[] { "lupus", "rabia" });
+        animal.setVaccines(new String[] { "Leptospirosis", "Parvovirus" });
 
         List<Animal> animals = new ArrayList<Animal>();
         animals.add(animal);
@@ -66,24 +66,24 @@ public class AnimalTest {
     public void getAnimal() {
         Animal animal = new Animal();
 
-        animal.setName("manchas");
-        animal.setBreed("bengali");
+        animal.setName("Manchas");
+        animal.setBreed("Bengali");
         animal.setGender("Female");
         animal.setVaccinated(true);
-        animal.setVaccines(new String[] { "lupus", "rabia" });
+        animal.setVaccines(new String[] { "Leptospirosis", "Parvovirus" });
 
-        Mockito.when(animalService.get("manchas")).thenReturn(animal);
+        Mockito.when(animalService.get("Manchas")).thenReturn(animal);
     }
 
     @State("add animal")
     public void saveAnimal() {
         Animal animal = new Animal();
 
-        animal.setName("manchas");
-        animal.setBreed("bengali");
+        animal.setName("Manchas");
+        animal.setBreed("Bengali");
         animal.setGender("Female");
         animal.setVaccinated(true);
-        animal.setVaccines(new String[] { "lupus", "rabia" });
+        animal.setVaccines(new String[] { "Leptospirosis", "Parvovirus" });
 
         Mockito.when(animalService.save(animal)).thenReturn(animal);
     }
@@ -92,25 +92,17 @@ public class AnimalTest {
     public void updateAnimal() {
         Animal animal = new Animal();
 
-        animal.setName("manchas");
-        animal.setBreed("bengali");
+        animal.setName("Manchas");
+        animal.setBreed("Bengali");
         animal.setGender("Female");
         animal.setVaccinated(true);
-        animal.setVaccines(new String[] { "lupus", "rabia" });
+        animal.setVaccines(new String[] { "Leptospirosis", "Parvovirus" });
 
-        Mockito.when(animalService.replace("manchas", animal)).thenReturn(animal);
+        Mockito.when(animalService.replace("Manchas", animal)).thenReturn(animal);
     }
 
     @State("delete animal")
     public void deleteAnimal() {
-        Animal animal = new Animal();
-
-        animal.setName("manchas");
-        animal.setBreed("bengali");
-        animal.setGender("Female");
-        animal.setVaccinated(true);
-        animal.setVaccines(new String[] { "lupus", "rabia" });
-
-        Mockito.doNothing().when(animalService).delete("manchas");// .thenReturn(animal);
+        Mockito.doNothing().when(animalService).delete("Manchas");// .thenReturn(animal);
     }
 }
