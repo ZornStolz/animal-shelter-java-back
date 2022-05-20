@@ -55,7 +55,6 @@ public class AnimalTest {
         animal.setBreed("Bengali");
         animal.setGender("Female");
         animal.setVaccinated(true);
-        animal.setVaccines(new String[] { "Leptospirosis", "Parvovirus" });
 
         List<Animal> animals = new ArrayList<Animal>();
         animals.add(animal);
