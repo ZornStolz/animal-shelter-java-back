@@ -73,7 +73,7 @@ public class AnimalServiceImp implements AnimalService {
     }
 
     @Override
-    public Animal delete(String name) {
+    public void delete(String name) {
         var dao = repository.findByName(name);
 
         if (dao == null) {
@@ -81,7 +81,6 @@ public class AnimalServiceImp implements AnimalService {
         }
 
         repository.delete(dao);
-        return map(dao);
     }
 
     private Animal map(AnimalDao dao) {

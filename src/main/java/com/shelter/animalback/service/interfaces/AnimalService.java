@@ -13,5 +13,5 @@ public interface AnimalService {
 
     Animal replace(String name, Animal animal);
 
-    Animal delete(String name);
+    void delete(String name);
 }

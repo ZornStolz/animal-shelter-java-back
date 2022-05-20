@@ -8,9 +8,6 @@ import au.com.dius.pact.provider.junitsupport.loader.PactBroker;
 import au.com.dius.pact.provider.junitsupport.loader.PactBrokerAuth;
 import au.com.dius.pact.provider.spring.junit5.MockMvcTestTarget;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.shelter.animalback.controller.AnimalController;
 import com.shelter.animalback.domain.Animal;
 import com.shelter.animalback.service.interfaces.AnimalService;
@@ -23,7 +20,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-@PactBroker(url = "${PACT_BROKER_BASE_URL}", authentication = @PactBrokerAuth(token = "PACT_BROKER_TOKEN"))
+import java.util.ArrayList;
+import java.util.List;
+
+@PactBroker(url = "https://zornstolz.pactflow.io", authentication = @PactBrokerAuth(token = "uM082-ZLaRX767Ur82QnbQ"))
+// @PactBroker(url = "${PACT_BROKER_BASE_URL}", authentication =
+// @PactBrokerAuth(token = "PACT_BROKER_TOKEN"))
 @Provider("AnimalShelterBack")
 @ExtendWith(MockitoExtension.class)
 public class AnimalTest {
@@ -111,6 +113,6 @@ public class AnimalTest {
         animal.setVaccinated(true);
         animal.setVaccines(new String[] { "lupus", "rabia" });
 
-        Mockito.when(animalService.delete("manchas")).thenReturn(animal);
+        Mockito.doNothing().when(animalService).delete("manchas");// .thenReturn(animal);
     }
 }
